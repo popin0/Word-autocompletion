@@ -1,8 +1,12 @@
 package com.trie;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 /**
  * 
- * reproduced from http://www.programcreek.com/2014/05/leetcode-implement-trie-prefix-tree-java/
+ * reproduced and added to the original src
+ * from http://www.programcreek.com/2014/05/leetcode-implement-trie-prefix-tree-java/
  *
  */
 class TrieNode {
@@ -79,5 +83,40 @@ public class Trie {
             return null;
  
         return p;
+    }
+    
+    /**
+     * @author Khundongbam Popinjoy
+     * @param s
+     * @return list of possible words with the given prefix
+     */
+    public ArrayList<String> wordList(String s){
+    	TrieNode p = searchNode(s);
+    	if(p == null) return null;
+    	ArrayList<String> list = new ArrayList<>();
+    	LinkedList<MyMap> Q = new LinkedList<>();
+    	Q.push(new MyMap(p,s));
+    	while(Q.size() > 0){
+    		MyMap myMap = Q.pop();
+    		String str = myMap.str;
+    		TrieNode node = myMap.node;
+    		if(node.isEnd) list.add(str);
+    		for(int i= 0; i<26; i++){
+    			if(node.arr[i] != null){
+    				Q.addLast(new MyMap(node.arr[i], str+(char)('a'+i)));
+    			}
+    		}
+    	}
+    	return list;
+    }
+    
+    public class MyMap{
+    	private String str;
+    	private TrieNode node;
+    	
+    	MyMap(TrieNode n, String s){
+    		str = s;
+    		node = n;
+    	}
     }
 }

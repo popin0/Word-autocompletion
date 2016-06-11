@@ -156049,6 +156049,7 @@ khubber
 khud
 khula
 khulda
+khundongbam
 khuskhus
 khutba
 khutbah
@@ -230009,6 +230010,7 @@ popie
 popify
 popinac
 popinjay
+popinjoy
 popinjays
 popish
 popishly
